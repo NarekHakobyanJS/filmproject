@@ -1,0 +1,32 @@
+header {
+    background: gold;
+    margin : 0 auto;
+    padding: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top : 0;
+    left: 0;
+}
+
+
+.genresBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap : 15px;
+    width: 600px;
+    overflow-x: scroll;
+}
+.a{
+    position: relative;
+}
+
+.open {
+    width: 500px;
+    height: 500px;
+    background: red;
+    position: absolute;
+    left : -360px;
+}
