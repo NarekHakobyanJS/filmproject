@@ -21,7 +21,7 @@ export const fetchSearchFilm = createAsyncThunk(
     'fetchSearchFilm',
     async (text) => {
        const res = await filmsAPI.getSerachFilm(text)
-
+        //asa
        return res.data.results
     }
 )

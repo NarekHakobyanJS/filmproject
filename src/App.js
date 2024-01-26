@@ -7,7 +7,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import Film from './pages/Film/Film';
-
+////////
 function App() {
   const { pageCount } = useSelector((state) => state.filmsData)
   const disaptch = useDispatch()
