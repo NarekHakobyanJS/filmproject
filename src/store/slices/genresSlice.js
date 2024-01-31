@@ -8,15 +8,27 @@ export const fetchGenres = createAsyncThunk(
         return resposne.data.genres
     }
 )
+
+export const fetchFilmGenre = createAsyncThunk(
+    'fetchFilmGenre',
+    async (id) => {
+        let res = await filmsAPI.getGenreMovie(id)
+        return res.data.results
+    }
+)
 const genresSlice = createSlice({
     name: "genresSlice",
     initialState: {
-        genres: []
+        genres: [],
+        gen : []
     },
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchGenres.fulfilled, (state, action) => {
             state.genres = action.payload
+        })
+        builder.addCase(fetchFilmGenre.fulfilled, (state, action) => {
+            state.gen = action.payload
         })
     }
 })

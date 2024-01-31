@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { fetchSearchFilm, cahngeText } from '../../store/slices/filmsSlice'
 import GenresBTN from './GenresBTN/GenresBTN'
 import './Header.css'
@@ -22,6 +23,11 @@ const Header = () => {
     }
 
   }, [text])
+
+  const openToClose  = () => {
+    setOpen(false)
+    dispatch(cahngeText(""))
+  }
   return (
     <header>
       <div className='genresBlock'>
@@ -40,7 +46,9 @@ const Header = () => {
           open && <div className='open'>
             {
               serch.map((el) => {
-                return <li>{el.title}</li>
+                return <NavLink
+                  onClick={openToClose}
+                  to={`/${el.id}`} className='el'>{el.title}</NavLink>
               })
             }
           </div>

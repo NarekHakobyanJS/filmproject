@@ -10,7 +10,13 @@ header {
     left: 0;
 }
 
-
+.el {
+    display: block;
+    color : black;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 13px;
+}
 .genresBlock{
     display: flex;
     justify-content: space-between;
@@ -29,4 +35,6 @@ header {
     background: red;
     position: absolute;
     left : -360px;
+    overflow-y: scroll;
+
 }

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { filmsAPI } from "../../api/api";
 
+/// 1
 export const fetchFilmsByPage = createAsyncThunk(
     'fetchFilmsByPage',
     async (pageCount) => {
@@ -9,22 +10,53 @@ export const fetchFilmsByPage = createAsyncThunk(
     }
 )
 
+/// 2
 export const fetchOneFilm = createAsyncThunk(
+    // c1
     'fetchOneFilm',
+    // c2
     async (id) => {
         const res = await filmsAPI.getOneMovie(id)
         return res.data
     }
 )
 
+///4
 export const fetchSearchFilm = createAsyncThunk(
+    // c1
     'fetchSearchFilm',
+    // c2
     async (text) => {
-       const res = await filmsAPI.getSerachFilm(text)
-        //asa
-       return res.data.results
+        const res = await filmsAPI.getSerachFilm(text)
+        return res.data.results
     }
 )
+
+
+///3
+export const fetchTrailer = createAsyncThunk(
+    'fetchTrailer',
+    async ({ id, iframe }) => {
+        const res = await filmsAPI.getTrailer(id)
+
+        res.data.results.forEach((elm) => {
+            if (elm.name === "Official Trailer") {
+                iframe.current.setAttribute(
+                    "src",
+                    `https://www.youtube.com/embed/${elm.key}`
+                );
+            } else {
+                iframe.current.setAttribute(
+                    "src",
+                    `https://www.youtube.com/embed/${elm.key}`
+                );
+            }
+        })
+
+    }
+)
+
+
 
 const filmsSlice = createSlice({
     name: "filmsSlice",
@@ -32,15 +64,15 @@ const filmsSlice = createSlice({
         filmsByPage: [],
         pageCount: 1,
         isFethcing: false,
-        oneFilm : {},
-        text : '',
-        serch : []
+        oneFilm: {},
+        text: '',
+        serch: []
     },
     reducers: {
         incrementPage(state, action) {
             state.pageCount = state.pageCount + 1
         },
-        cahngeText(state, action){
+        cahngeText(state, action) {
             state.text = action.payload
         }
     },
